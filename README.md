@@ -1,4 +1,4 @@
-# Party Button App
+# Monty's Party Button App
 
 A tiny, fun app you can deploy on Coolify.
 
