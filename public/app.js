@@ -165,6 +165,28 @@ function attachEvents() {
       return;
     }
 
+    if (actionButton.dataset.action === "move") {
+      const current = cards.find((card) => card.id === id);
+      const nextStatus = prompt("Move to column: todo, doing, or done", current?.status || "todo");
+      if (!nextStatus) {
+        return;
+      }
+
+      const normalized = nextStatus.trim().toLowerCase();
+      if (!["todo", "doing", "done"].includes(normalized)) {
+        alert("Use one of: todo, doing, done");
+        return;
+      }
+
+      try {
+        await updateCard(id, { status: normalized });
+        await loadCards();
+      } catch (error) {
+        alert(error.message);
+      }
+      return;
+    }
+
     if (actionButton.dataset.action === "edit") {
       const current = cards.find((card) => card.id === id);
       const title = prompt("Edit title", current?.title || "");
@@ -189,6 +211,10 @@ function attachEvents() {
         return;
       }
       draggedCardId = Number(card.dataset.id);
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", String(draggedCardId));
+      }
       card.classList.add("dragging");
     });
 
