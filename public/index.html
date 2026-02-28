@@ -3,24 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coolify Party Console</title>
+    <title>Coolify Local Control</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main class="card">
-      <p class="eyebrow">Coolify Local Stack</p>
-      <h1>Deploy Party Console</h1>
-      <p class="subtext">Launch a fake deploy and celebrate every green check.</p>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">Self-hosted platform</p>
+        <h1>Coolify Local Control</h1>
+        <p class="subtext">
+          This page is informational only. Deployments and health data are managed in your Coolify dashboard.
+        </p>
+      </header>
 
-      <div class="status-grid" aria-live="polite">
-        <p><span class="status-dot"></span>Build queue: <strong id="build">idle</strong></p>
-        <p><span class="status-dot"></span>Health check: <strong id="health">waiting</strong></p>
-      </div>
+      <section class="panel">
+        <h2>What this project is</h2>
+        <p>
+          A small Node app to verify your local Coolify installation and provide a clean homepage for your test
+          environment.
+        </p>
+      </section>
 
-      <button id="party-btn" type="button">Run Deploy</button>
-      <p id="fortune" class="fortune">Ready when you are, Captain Coolify.</p>
+      <section class="panel">
+        <h2>How to deploy updates</h2>
+        <ol>
+          <li>Push code changes to your GitHub repository.</li>
+          <li>Open the app in Coolify and click <strong>Redeploy</strong>, or configure Git webhooks.</li>
+          <li>Watch build output in the <strong>Deployments</strong> and <strong>Logs</strong> tabs.</li>
+        </ol>
+      </section>
     </main>
-
-    <script src="/app.js" type="module"></script>
   </body>
 </html>

@@ -17,26 +17,35 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  display: block;
   font-family: "Trebuchet MS", "Avenir Next", sans-serif;
   background:
     radial-gradient(circle at 20% 20%, #ffb22422 0 170px, transparent 210px),
     radial-gradient(circle at 85% 10%, #5f6b8a22 0 150px, transparent 190px),
     linear-gradient(160deg, var(--bg-top), var(--bg-mid) 48%, var(--bg-bottom));
   color: var(--ink);
-  padding: 20px;
+  padding: 28px 16px;
 }
 
-.card {
-  width: min(92vw, 560px);
-  border-radius: 18px;
+.shell {
+  width: min(940px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+.hero,
+.panel {
+  border-radius: 16px;
   background: var(--card);
-  padding: 28px;
+  padding: 24px;
   border: 1px solid var(--line);
-  box-shadow: 0 24px 60px #00000066;
-  text-align: center;
+  box-shadow: 0 16px 40px #00000050;
   backdrop-filter: blur(7px);
+}
+
+.hero {
+  text-align: center;
 }
 
 .eyebrow {
@@ -49,93 +58,37 @@ body {
 
 h1 {
   margin: 8px 0 8px;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 4vw, 2.8rem);
 }
 
 .subtext {
-  margin: 0 0 24px;
-  color: #c8d0e5;
-}
-
-.status-grid {
-  display: grid;
-  gap: 10px;
-  margin: 0 0 22px;
-}
-
-.status-grid p {
   margin: 0;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 12px;
-  background: #0b1020;
-  color: var(--muted);
-  text-align: left;
+  color: #c8d0e5;
+  line-height: 1.45;
 }
 
-.status-grid strong {
-  color: var(--ink);
+h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
 }
 
-.status-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 8px;
-  background: var(--accent);
-  box-shadow: 0 0 12px #ffb224aa;
+.panel p {
+  margin: 0;
+  color: #d4dbef;
+  line-height: 1.5;
 }
 
-button {
-  border: 0;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1a1300;
-  cursor: pointer;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  padding: 14px 24px;
-  min-width: 220px;
-  box-shadow: 0 12px 20px #ffb2244a;
-  transform: translateY(0);
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+.panel ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #d4dbef;
+  line-height: 1.6;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 22px #ffb2245e;
-}
-
-button:active {
-  transform: translateY(1px);
-}
-
-button:disabled {
-  opacity: 0.7;
-  cursor: wait;
-}
-
-.fortune {
-  margin: 20px 0 0;
-  font-weight: 600;
-  color: #d8e0f5;
-}
-
-.confetti {
-  position: fixed;
-  top: -18px;
-  width: 10px;
-  height: 16px;
-  border-radius: 3px;
-  opacity: 0.9;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-  to {
-    transform: translate3d(var(--drift), 110vh, 0) rotate(900deg);
-    opacity: 1;
+@media (max-width: 600px) {
+  .hero,
+  .panel {
+    padding: 20px;
   }
 }
 
