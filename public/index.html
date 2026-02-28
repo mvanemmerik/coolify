@@ -16,32 +16,34 @@
       </header>
 
       <section class="panel compose">
-        <h2>New Card</h2>
-        <form id="card-form" autocomplete="off">
-          <label>
-            Title
-            <input id="title" name="title" type="text" required maxlength="120" placeholder="Ship webhook retries" />
-          </label>
-          <label>
-            Description
-            <textarea
-              id="description"
-              name="description"
-              rows="3"
-              maxlength="300"
-              placeholder="Add exponential backoff and log failed deliveries"
-            ></textarea>
-          </label>
-          <label>
-            Column
-            <select id="status" name="status">
-              <option value="todo">To Do</option>
-              <option value="doing">In Progress</option>
-              <option value="done">Done</option>
-            </select>
-          </label>
-          <button type="submit">Add Card</button>
-        </form>
+        <details class="compose-details" open>
+          <summary>New Card</summary>
+          <form id="card-form" autocomplete="off">
+            <label>
+              Title
+              <input id="title" name="title" type="text" required maxlength="120" placeholder="Ship webhook retries" />
+            </label>
+            <label>
+              Description
+              <textarea
+                id="description"
+                name="description"
+                rows="3"
+                maxlength="300"
+                placeholder="Add exponential backoff and log failed deliveries"
+              ></textarea>
+            </label>
+            <label>
+              Column
+              <select id="status" name="status">
+                <option value="todo">To Do</option>
+                <option value="doing">In Progress</option>
+                <option value="done">Done</option>
+              </select>
+            </label>
+            <button type="submit">Add Card</button>
+          </form>
+        </details>
       </section>
 
       <section class="board" aria-label="Kanban board">
