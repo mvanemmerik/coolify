@@ -1,0 +1,13 @@
+{
+  "name": "coolify-fun-app",
+  "version": "1.0.0",
+  "description": "A tiny party button app for Coolify.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
