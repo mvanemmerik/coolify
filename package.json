@@ -1,11 +1,15 @@
 {
-  "name": "coolify-fun-app",
+  "name": "coolify-kanban-board",
   "version": "1.0.0",
-  "description": "A tiny party button app for Coolify.",
+  "description": "A Coolify-themed Kanban board backed by PostgreSQL.",
   "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
   },
   "engines": {
     "node": ">=18"

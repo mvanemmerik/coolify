@@ -1,13 +1,15 @@
 :root {
-  --bg-top: #090b12;
-  --bg-mid: #111827;
-  --bg-bottom: #191f2d;
-  --card: #0f1422e6;
-  --ink: #f8f9ff;
-  --muted: #9eabc7;
-  --line: #2b3346;
+  --bg-top: #0a0d16;
+  --bg-mid: #101827;
+  --bg-bottom: #1a2233;
+  --panel: #10172adf;
+  --card: #171f32;
+  --ink: #f7f9ff;
+  --muted: #9bacce;
+  --line: #2c3650;
   --accent: #ffb224;
-  --accent-2: #ffd978;
+  --accent-soft: #ffd978;
+  --danger: #ff6d6d;
 }
 
 * {
@@ -16,31 +18,30 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: block;
   font-family: "Trebuchet MS", "Avenir Next", sans-serif;
   background:
-    radial-gradient(circle at 20% 20%, #ffb22422 0 170px, transparent 210px),
-    radial-gradient(circle at 85% 10%, #5f6b8a22 0 150px, transparent 190px),
+    radial-gradient(circle at 15% 15%, #ffb22420 0 180px, transparent 230px),
+    radial-gradient(circle at 85% 10%, #8da2d822 0 170px, transparent 220px),
     linear-gradient(160deg, var(--bg-top), var(--bg-mid) 48%, var(--bg-bottom));
   color: var(--ink);
   padding: 28px 16px;
 }
 
-.shell {
-  width: min(940px, 100%);
+.page {
+  width: min(1100px, 100%);
   margin: 0 auto;
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
-.hero,
 .panel {
   border-radius: 16px;
-  background: var(--card);
+  background: var(--panel);
   padding: 24px;
   border: 1px solid var(--line);
-  box-shadow: 0 16px 40px #00000050;
+  box-shadow: 0 16px 36px #00000055;
   backdrop-filter: blur(7px);
 }
 
@@ -62,9 +63,15 @@ h1 {
 }
 
 .subtext {
-  margin: 0;
+  margin: 0 0 10px;
   color: #c8d0e5;
   line-height: 1.45;
+}
+
+.health {
+  margin: 0;
+  color: var(--accent-soft);
+  font-weight: 700;
 }
 
 h2 {
@@ -78,17 +85,145 @@ h2 {
   line-height: 1.5;
 }
 
-.panel ol {
+.compose h2 {
+  margin-bottom: 14px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #0f1525;
+  color: var(--ink);
+  padding: 10px 12px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-weight: 700;
+  background: linear-gradient(140deg, var(--accent), var(--accent-soft));
+  color: #1a1200;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+.board {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.column {
+  padding: 18px;
+}
+
+.column h2 {
+  margin-bottom: 10px;
+}
+
+.lane {
+  min-height: 220px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.lane.drag-over {
+  outline: 2px dashed var(--accent);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
+
+.card {
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 12px;
+  cursor: grab;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card-title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.card-description {
   margin: 0;
-  padding-left: 1.2rem;
-  color: #d4dbef;
-  line-height: 1.6;
+  color: #cfd8ef;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.card-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.ghost {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  background: #101a2f;
+  color: var(--ink);
+  font-size: 0.87rem;
+}
+
+.ghost.danger {
+  color: #ffd6d6;
+  border-color: #684142;
+  background: #2f1a1a;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 0.95rem;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 12px;
 }
 
 @media (max-width: 600px) {
-  .hero,
   .panel {
-    padding: 20px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 960px) {
+  .board {
+    grid-template-columns: 1fr;
   }
 }
 

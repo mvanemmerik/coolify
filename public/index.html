@@ -3,35 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coolify Local Control</title>
+    <title>Coolify Kanban</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main class="shell">
-      <header class="hero">
-        <p class="eyebrow">Self-hosted platform</p>
-        <h1>Coolify Local Control</h1>
-        <p class="subtext">
-          This page is informational only. Deployments and health data are managed in your Coolify dashboard.
-        </p>
+    <main class="page">
+      <header class="hero panel">
+        <p class="eyebrow">Coolify + PostgreSQL</p>
+        <h1>Team Kanban Board</h1>
+        <p class="subtext">Create cards, drag them between columns, and keep everything persisted in your database.</p>
+        <p id="health" class="health">Checking database...</p>
       </header>
 
-      <section class="panel">
-        <h2>What this project is</h2>
-        <p>
-          A small Node app to verify your local Coolify installation and provide a clean homepage for your test
-          environment.
-        </p>
+      <section class="panel compose">
+        <h2>New Card</h2>
+        <form id="card-form" autocomplete="off">
+          <label>
+            Title
+            <input id="title" name="title" type="text" required maxlength="120" placeholder="Ship webhook retries" />
+          </label>
+          <label>
+            Description
+            <textarea
+              id="description"
+              name="description"
+              rows="3"
+              maxlength="300"
+              placeholder="Add exponential backoff and log failed deliveries"
+            ></textarea>
+          </label>
+          <label>
+            Column
+            <select id="status" name="status">
+              <option value="todo">To Do</option>
+              <option value="doing">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </label>
+          <button type="submit">Add Card</button>
+        </form>
       </section>
 
-      <section class="panel">
-        <h2>How to deploy updates</h2>
-        <ol>
-          <li>Push code changes to your GitHub repository.</li>
-          <li>Open the app in Coolify and click <strong>Redeploy</strong>, or configure Git webhooks.</li>
-          <li>Watch build output in the <strong>Deployments</strong> and <strong>Logs</strong> tabs.</li>
-        </ol>
+      <section class="board" aria-label="Kanban board">
+        <article class="column panel">
+          <h2>To Do</h2>
+          <div id="todo" class="lane" data-status="todo"></div>
+        </article>
+        <article class="column panel">
+          <h2>In Progress</h2>
+          <div id="doing" class="lane" data-status="doing"></div>
+        </article>
+        <article class="column panel">
+          <h2>Done</h2>
+          <div id="done" class="lane" data-status="done"></div>
+        </article>
       </section>
     </main>
+
+    <template id="card-template">
+      <article class="card" draggable="true">
+        <h3 class="card-title"></h3>
+        <p class="card-description"></p>
+        <div class="card-actions">
+          <button class="ghost" type="button" data-action="edit">Edit</button>
+          <button class="ghost danger" type="button" data-action="delete">Delete</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
   </body>
 </html>
