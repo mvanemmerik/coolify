@@ -1,11 +1,13 @@
 :root {
-  --bg-top: #0b1020;
-  --bg-mid: #1f2a44;
-  --bg-bottom: #122f2b;
-  --card: #ffffffee;
-  --ink: #13141a;
-  --accent: #ff6b35;
-  --accent-2: #00b4d8;
+  --bg-top: #090b12;
+  --bg-mid: #111827;
+  --bg-bottom: #191f2d;
+  --card: #0f1422e6;
+  --ink: #f8f9ff;
+  --muted: #9eabc7;
+  --line: #2b3346;
+  --accent: #ffb224;
+  --accent-2: #ffd978;
 }
 
 * {
@@ -17,29 +19,31 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+  font-family: "Trebuchet MS", "Avenir Next", sans-serif;
   background:
-    radial-gradient(circle at 20% 20%, #ffffff22 0 180px, transparent 200px),
-    radial-gradient(circle at 80% 10%, #ffffff11 0 150px, transparent 170px),
-    linear-gradient(160deg, var(--bg-top), var(--bg-mid) 45%, var(--bg-bottom));
+    radial-gradient(circle at 20% 20%, #ffb22422 0 170px, transparent 210px),
+    radial-gradient(circle at 85% 10%, #5f6b8a22 0 150px, transparent 190px),
+    linear-gradient(160deg, var(--bg-top), var(--bg-mid) 48%, var(--bg-bottom));
   color: var(--ink);
   padding: 20px;
 }
 
 .card {
   width: min(92vw, 560px);
-  border-radius: 20px;
+  border-radius: 18px;
   background: var(--card);
   padding: 28px;
-  box-shadow: 0 24px 60px #00000044;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px #00000066;
   text-align: center;
+  backdrop-filter: blur(7px);
 }
 
 .eyebrow {
   margin: 0;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #4f637d;
+  color: var(--muted);
   font-size: 12px;
 }
 
@@ -50,37 +54,72 @@ h1 {
 
 .subtext {
   margin: 0 0 24px;
-  color: #3b4354;
+  color: #c8d0e5;
+}
+
+.status-grid {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.status-grid p {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #0b1020;
+  color: var(--muted);
+  text-align: left;
+}
+
+.status-grid strong {
+  color: var(--ink);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: var(--accent);
+  box-shadow: 0 0 12px #ffb224aa;
 }
 
 button {
   border: 0;
-  border-radius: 999px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 700;
-  color: #fff;
+  color: #1a1300;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--accent), #ff9f1c 60%, #ffd166);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   padding: 14px 24px;
   min-width: 220px;
-  box-shadow: 0 12px 20px #ff6b3555;
+  box-shadow: 0 12px 20px #ffb2244a;
   transform: translateY(0);
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 22px #ff6b355f;
+  box-shadow: 0 16px 22px #ffb2245e;
 }
 
 button:active {
   transform: translateY(1px);
 }
 
+button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
 .fortune {
   margin: 20px 0 0;
   font-weight: 600;
-  color: #1f2a44;
+  color: #d8e0f5;
 }
 
 .confetti {
@@ -97,5 +136,12 @@ button:active {
   to {
     transform: translate3d(var(--drift), 110vh, 0) rotate(900deg);
     opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }

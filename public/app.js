@@ -1,12 +1,16 @@
 const button = document.getElementById("party-btn");
 const fortune = document.getElementById("fortune");
+const buildStatus = document.getElementById("build");
+const healthStatus = document.getElementById("health");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let isDeploying = false;
 
 const fortunes = [
-  "Your lucky color today: Sunset Orange",
-  "Your lucky color today: Ocean Teal",
-  "Your lucky color today: Mint Glow",
-  "Your lucky color today: Mango Gold",
-  "Your lucky color today: Sky Blue"
+  "Deploy complete: containers are purring.",
+  "Build passed: your stack is vibing.",
+  "Green checks across the board. Ship it.",
+  "Zero downtime deploy. Coffee reward unlocked.",
+  "All services healthy. This is peak platform energy."
 ];
 
 const confettiColors = ["#ff6b35", "#ffd166", "#06d6a0", "#00b4d8", "#ef476f", "#7353ba"];
@@ -16,6 +20,10 @@ function randomItem(items) {
 }
 
 function launchConfetti() {
+  if (prefersReducedMotion.matches) {
+    return;
+  }
+
   const amount = 120;
   for (let i = 0; i < amount; i += 1) {
     const bit = document.createElement("span");
@@ -31,7 +39,26 @@ function launchConfetti() {
 }
 
 button?.addEventListener("click", () => {
+  if (isDeploying) {
+    return;
+  }
+
+  isDeploying = true;
+  button.disabled = true;
+
+  if (buildStatus) buildStatus.textContent = "building...";
+  if (healthStatus) healthStatus.textContent = "probing...";
+
   launchConfetti();
-  fortune.textContent = randomItem(fortunes);
-  button.textContent = "Party Again";
+  if (fortune) {
+    fortune.textContent = randomItem(fortunes);
+  }
+  button.textContent = "Deploy Again";
+
+  setTimeout(() => {
+    if (buildStatus) buildStatus.textContent = "success";
+    if (healthStatus) healthStatus.textContent = "healthy";
+    button.disabled = false;
+    isDeploying = false;
+  }, 900);
 });

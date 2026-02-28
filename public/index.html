@@ -3,17 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Party Button</title>
+    <title>Coolify Party Console</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="card">
-      <p class="eyebrow">Monty's tiny app</p>
-      <h1>Party Button</h1>
-      <p class="subtext">Tap the button and make your browser celebrate.</p>
+      <p class="eyebrow">Coolify Local Stack</p>
+      <h1>Deploy Party Console</h1>
+      <p class="subtext">Launch a fake deploy and celebrate every green check.</p>
 
-      <button id="party-btn" type="button">Start the Party</button>
-      <p id="fortune" class="fortune">Your lucky color today: Sunset Orange</p>
+      <div class="status-grid" aria-live="polite">
+        <p><span class="status-dot"></span>Build queue: <strong id="build">idle</strong></p>
+        <p><span class="status-dot"></span>Health check: <strong id="health">waiting</strong></p>
+      </div>
+
+      <button id="party-btn" type="button">Run Deploy</button>
+      <p id="fortune" class="fortune">Ready when you are, Captain Coolify.</p>
     </main>
 
     <script src="/app.js" type="module"></script>
